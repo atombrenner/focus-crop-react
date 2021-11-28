@@ -1,0 +1,179 @@
+/* border-box reset, see https://css-tricks.com/box-sizing/ */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.image-cropper {
+  user-select: none;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.image-cropper > img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.clip-rectangle {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.clip-rectangle-shadow {
+  box-shadow: 0 0 0 300vw rgba(0, 0, 0, 0.35);
+}
+
+.clip-handle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+.clip-handle:hover {
+  background-color: lightblue;
+}
+
+.clip-handle-top-left {
+  top: 0%;
+  left: 0%;
+  transform: translate(-8px, -8px);
+  cursor: nw-resize;
+}
+
+.clip-handle-top {
+  top: 0%;
+  left: 50%;
+  transform: translate(-8px, -8px);
+  cursor: n-resize;
+}
+
+.clip-handle-top-right {
+  top: 0%;
+  right: 0%;
+  transform: translate(8px, -8px);
+  cursor: ne-resize;
+}
+
+.clip-handle-right {
+  top: 50%;
+  right: 0%;
+  transform: translate(8px, -8px);
+  cursor: e-resize;
+}
+
+.clip-handle-bottom-right {
+  bottom: 0%;
+  right: 0%;
+  transform: translate(8px, 8px);
+  cursor: se-resize;
+}
+
+.clip-handle-bottom {
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-8px, 8px);
+  cursor: s-resize;
+}
+
+.clip-handle-bottom-left {
+  bottom: 0%;
+  left: 0%;
+  transform: translate(-8px, 8px);
+  cursor: sw-resize;
+}
+
+.clip-handle-left {
+  top: 50%;
+  left: 0%;
+  transform: translate(-8px, -8px);
+  cursor: w-resize;
+}
+
+.clip-line {
+  position: absolute;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: whitesmoke;
+}
+
+.clip-line-vertical {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  top: 0%;
+  left: 33.333%;
+  width: 33.333%;
+  height: 100%;
+}
+
+.clip-line-horizontal {
+  border-left-width: 0;
+  border-right-width: 0;
+  top: 33.333%;
+  left: 0%;
+  width: 100%;
+  height: 33.333%;
+}
+
+.clip-border-vertical {
+  position: absolute;
+  width: 19px;
+  transform: translateX(-9px);
+  height: 100%;
+}
+
+.clip-border-left {
+  left: 0%;
+  cursor: w-resize;
+}
+
+.clip-border-right {
+  left: 100%;
+  cursor: e-resize;
+}
+
+.clip-border-horizontal {
+  position: absolute;
+  height: 21px;
+  transform: translateY(-10px);
+  width: 100%;
+}
+
+.clip-border-top {
+  top: 0%;
+  cursor: n-resize;
+}
+
+.clip-border-bottom {
+  top: 100%;
+  cursor: s-resize;
+}
+
+.focus-point {
+  pointer-events: all;
+  position: absolute;
+
+  box-sizing: border-box;
+  width: 39px;
+  height: 39px;
+  transform: translate(-20px, -20px);
+  background: rgba(192, 255, 192, 0.3);
+  border: 2px solid black;
+
+  cursor: move;
+}
+
+.focus-point:hover {
+  background: rgba(192, 255, 192, 0.75);
+}
