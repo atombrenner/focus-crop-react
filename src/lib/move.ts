@@ -1,4 +1,4 @@
-import { Cropping } from './model'
+import { Cropping } from './focusCrop'
 
 type Horizontal = 'left' | 'right'
 type Vertical = 'top' | 'bottom'

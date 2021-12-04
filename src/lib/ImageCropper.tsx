@@ -1,6 +1,6 @@
-import React, { ReactEventHandler, PointerEventHandler, useState, useRef, useCallback } from 'react'
+import React, { ReactEventHandler, PointerEventHandler, useState, useCallback } from 'react'
 import { move, MoveFn } from './move'
-import { Point, Rectangle, Cropping } from './model'
+import { Point, Rectangle, Cropping } from './focusCrop'
 
 import './ImageCropper.css'
 
@@ -27,8 +27,6 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
   const [drag, setDrag] = useState<Drag>()
   const [dragPoint, setDragPoint] = useState<Point>()
   const [isLoaded, setIsLoaded] = useState(false)
-
-  const ref = useRef<HTMLDivElement>(null)
 
   const cancelDrag = useCallback(() => {
     if (drag) {
@@ -85,7 +83,7 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
     setDrag(undefined)
   }
 
-  const onImgLoad: ReactEventHandler<HTMLImageElement> = (e) => {
+  const onImageLoad: ReactEventHandler<HTMLImageElement> = (e) => {
     onLoad(e.currentTarget)
     setIsLoaded(true)
   }
@@ -97,12 +95,11 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onContextMenu={cancelDrag}
-      ref={ref}
     >
-      <img src={src} alt="" onLoad={onImgLoad} />
+      <img src={src} alt="" onLoad={onImageLoad} />
       {isLoaded && <ClipRectangle {...cropping.clip} />}
       {isLoaded && <FocusPoint {...cropping.focus} />}
-      {!isLoaded && <p>waiting for content ...</p>}
+      {!isLoaded && <p>loading ...</p>}
     </div>
   )
 }

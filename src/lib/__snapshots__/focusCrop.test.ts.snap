@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`each desired ratio generates a valid rectangle 1`] = `
+Object {
+  "height": 288,
+  "width": 720,
+  "x": 80,
+  "y": 36,
+}
+`;
+
+exports[`each desired ratio generates a valid rectangle 2`] = `
+Object {
+  "height": 405,
+  "width": 720,
+  "x": 80,
+  "y": 0,
+}
+`;
+
+exports[`each desired ratio generates a valid rectangle 3`] = `
+Object {
+  "height": 480,
+  "width": 640,
+  "x": 80,
+  "y": 0,
+}
+`;
+
+exports[`each desired ratio generates a valid rectangle 4`] = `
+Object {
+  "height": 480,
+  "width": 480,
+  "x": 80,
+  "y": 0,
+}
+`;
+
+exports[`each desired ratio generates a valid rectangle 5`] = `
+Object {
+  "height": 480,
+  "width": 270,
+  "x": 185,
+  "y": 0,
+}
+`;
+
+exports[`each desired ratio generates a valid rectangle 6`] = `
+Object {
+  "height": 480,
+  "width": 221.53846153846155,
+  "x": 209.23076923076923,
+  "y": 0,
+}
+`;
