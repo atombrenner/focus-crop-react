@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { Size, Cropping, focusCrop } from './focusCrop'
+import { Size, Cropping, focusCrop, ratioFromString } from './focusCrop'
 import './CroppedImage.css'
-
-const ratioFromString = (ratio: string) => {
-  const [w, h] = ratio.split(':').map(Number)
-  if (!(w && h && w > 0 && h > 0)) throw Error(`invalid ratio: ${ratio}`)
-  return w / h
-}
 
 const calcCanvasSize = (ratio: number): Size => {
   // To make preview images more comparable we try to occupy the same space.
@@ -36,8 +30,7 @@ export const CroppedImage = ({ image, ratio, cropping }: CroppedImageProps) => {
   useEffect(() => {
     const ctx = ref.current!.getContext('2d')
     if (!ctx) throw Error('no canvas context')
-    const originalSize = { width: image.naturalWidth, height: image.naturalHeight }
-    const src = focusCrop(desiredRatio, originalSize, cropping)
+    const src = focusCrop(desiredRatio, cropping)
     ctx.drawImage(image, src.x, src.y, src.width, src.height, 0, 0, width, height)
   })
 

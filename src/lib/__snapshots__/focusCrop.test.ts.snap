@@ -1,55 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`each desired ratio generates a valid rectangle 1`] = `
+exports[`ratio 1:1 generates a valid rectangle 1`] = `
 Object {
-  "height": 288,
-  "width": 720,
-  "x": 80,
-  "y": 36,
+  "height": 759,
+  "width": 759,
+  "x": 34,
+  "y": 37,
 }
 `;
 
-exports[`each desired ratio generates a valid rectangle 2`] = `
+exports[`ratio 4:3 generates a valid rectangle 1`] = `
 Object {
-  "height": 405,
-  "width": 720,
-  "x": 80,
-  "y": 0,
+  "height": 630.75,
+  "width": 841,
+  "x": 34,
+  "y": 37,
 }
 `;
 
-exports[`each desired ratio generates a valid rectangle 3`] = `
+exports[`ratio 5:2 generates a valid rectangle 1`] = `
 Object {
-  "height": 480,
-  "width": 640,
-  "x": 80,
-  "y": 0,
+  "height": 336.4,
+  "width": 841,
+  "x": 34,
+  "y": 131.8,
 }
 `;
 
-exports[`each desired ratio generates a valid rectangle 4`] = `
+exports[`ratio 9:16 generates a valid rectangle 1`] = `
 Object {
-  "height": 480,
-  "width": 480,
-  "x": 80,
-  "y": 0,
+  "height": 759,
+  "width": 426.9375,
+  "x": 186.53125,
+  "y": 37,
 }
 `;
 
-exports[`each desired ratio generates a valid rectangle 5`] = `
+exports[`ratio 16:9 generates a valid rectangle 1`] = `
 Object {
-  "height": 480,
-  "width": 270,
-  "x": 185,
-  "y": 0,
+  "height": 473.0625,
+  "width": 841,
+  "x": 34,
+  "y": 63.46875,
 }
 `;
 
-exports[`each desired ratio generates a valid rectangle 6`] = `
+exports[`ratio 90:195 generates a valid rectangle 1`] = `
 Object {
-  "height": 480,
-  "width": 221.53846153846155,
-  "x": 209.23076923076923,
-  "y": 0,
+  "height": 759,
+  "width": 350.3076923076923,
+  "x": 224.84615384615387,
+  "y": 37,
 }
 `;

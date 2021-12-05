@@ -1,15 +1,15 @@
-import { Cropping, focusCrop, Size } from './focusCrop'
+import { Cropping, focusCrop, ratioFromString } from './focusCrop'
 
-const imageSize: Size = { width: 800, height: 600 }
 const cropping: Cropping = {
-  focus: { x: 0.4, y: 0.3 },
-  clip: { x: 0.1, y: 0, width: 0.9, height: 0.8 },
+  focus: { x: 400, y: 300 },
+  clip: { x: 34, y: 37, width: 841, height: 759 },
 }
 
-const ratios = [5 / 2, 16 / 9, 4 / 3, 1 / 1, 9 / 16, 90 / 195]
+const ratios = ['5:2', '16:9', '4:3', '1:1', '9:16', '90:195']
 
-test.each(ratios)('each desired ratio generates a valid rectangle', (ratio) => {
-  const rect = focusCrop(ratio, imageSize, cropping)
-  expect(rect.width / rect.height).toBeCloseTo(ratio)
+test.each(ratios)('ratio %s generates a valid rectangle', (ratio) => {
+  const desiredRatio = ratioFromString(ratio)
+  const rect = focusCrop(desiredRatio, cropping)
+  expect(rect.width / rect.height).toBeCloseTo(desiredRatio)
   expect(rect).toMatchSnapshot()
 })
