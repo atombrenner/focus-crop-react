@@ -48,12 +48,12 @@ export const focusCrop = (ratio: number, { focus, clip }: Cropping): Rectangle =
   if (clipRatio < ratio) {
     const newHeight = clip.width / ratio
     // calculate top of rect centered around focus point y
-    const newY = center(focus.y, newHeight, clip.y, clip.y + clip.height)
+    const newY = centered(focus.y, newHeight, clip.y, clip.y + clip.height)
     return { x: clip.x, y: newY, width: clip.width, height: newHeight }
   } else {
     const newWidth = clip.height * ratio
     // calculate left of rect centered around focus point x
-    const newX = center(focus.x, newWidth, clip.x, clip.x + clip.width)
+    const newX = centered(focus.x, newWidth, clip.x, clip.x + clip.width)
     return { x: newX, y: clip.y, width: newWidth, height: clip.height }
   }
 }
@@ -63,7 +63,7 @@ export const focusCrop = (ratio: number, { focus, clip }: Cropping): Rectangle =
  *  if start < min then start = min
  *  if stop > max then stop = max
  *  */
-const center = (center: number, length: number, min: number, max: number): number => {
+const centered = (center: number, length: number, min: number, max: number): number => {
   const start = center - length / 2
   return Math.min(Math.max(start, min) + length, max) - length
 }

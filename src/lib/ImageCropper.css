@@ -28,10 +28,10 @@
   position: absolute;
   width: 15px;
   height: 15px;
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.5);
 }
 .clip-handle:hover {
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .clip-handle-top-left {
@@ -94,7 +94,7 @@
   position: absolute;
   border-style: dashed;
   border-width: 3px;
-  border-color: whitesmoke;
+  border-color: rgba(245, 245, 245, 0.5);
 }
 
 .clip-line-vertical {

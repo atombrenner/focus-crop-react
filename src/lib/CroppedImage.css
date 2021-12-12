@@ -1,7 +1,5 @@
 .cropped-image {
   position: relative;
-  padding: 2px;
-  border: 8px solid transparent;
 }
 
 .cropped-image-label {

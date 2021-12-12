@@ -10,19 +10,26 @@ html {
 
 body {
   margin: 0;
+  padding: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
   font-size: 10px;
-  color: white;
+  color: whitesmoke;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: red black;
 }
 
 a {
   color: #61dafb;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+h1 {
+  margin: 0;
+}
+
+p {
+  font-size: 0.9rem;
 }

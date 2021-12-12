@@ -2,15 +2,14 @@ import { useEffect, useRef } from 'react'
 import { Size, Cropping, focusCrop, ratioFromString } from './focusCrop'
 import './CroppedImage.css'
 
-const calcCanvasSize = (ratio: number): Size => {
+const calcCanvasSize = (ratio: number, target = 160): Size => {
   // To make preview images more comparable we try to occupy the same space.
   // So we we try to keep the square pixels constant and
   // because of the vertical-horizontal optical illusion
   // we need to overweight the height in the calculation.
-  const target = 200
   const squarePixels = (target + target * 0.07 * ratio) ** 2
   //const squarePixels = target ** 2
-  console.log(squarePixels)
+  //console.log(squarePixels)
   const height = Math.sqrt(squarePixels / ratio)
   const width = height * ratio
   return { width, height }
@@ -25,7 +24,7 @@ export type CroppedImageProps = {
 export const CroppedImage = ({ image, ratio, cropping }: CroppedImageProps) => {
   const ref = useRef<HTMLCanvasElement>(null)
   const desiredRatio = ratioFromString(ratio)
-  const { width, height } = calcCanvasSize(desiredRatio)
+  const { width, height } = calcCanvasSize(desiredRatio, image.width / 3)
 
   useEffect(() => {
     const ctx = ref.current!.getContext('2d')

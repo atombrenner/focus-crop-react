@@ -5,7 +5,15 @@ import { Cropping, scaleCropping } from './lib/focusCrop'
 
 import './App.css'
 
+const examples = [
+  'pexels-cottonbro-4503273.webp',
+  'pexels-laura-penwell-3608056.webp',
+  'pexels-vlada-karpovich-4609096.webp',
+  'pexels-kyle-karbowski-9637308.webp',
+] as const
+
 export const App = () => {
+  const [example, setExample] = useState<string>(examples[0])
   const [image, setImage] = useState<HTMLImageElement>()
   const [cropping, setCropping] = useState<Cropping>({
     focus: { x: 0.5, y: 1 / 3 },
@@ -13,19 +21,45 @@ export const App = () => {
   })
 
   return (
-    <div className="App">
-      <ImageCropper
-        className="app-cropper"
-        //src="pexels-laura-penwell-3608056.webp"
-        src="pexels-cottonbro-4503273.webp"
-        cropping={cropping}
-        onLoad={setImage}
-        onChange={setCropping}
-      />
-      <CroppedImages image={image} cropping={cropping} />
-    </div>
+    <>
+      <h1>Focus Crop React</h1>
+      <p>Crop images to a desired aspect ratio around a focus point.</p>
+      <div className="app-layout">
+        <div className="app-cropper">
+          <ImageCropper
+            src={example}
+            cropping={cropping}
+            onLoad={setImage}
+            onChange={setCropping}
+          />
+          <p>
+            Example images from <a href="https://pexels.com">Pexels</a>:
+          </p>
+          <Examples selected={example} examples={examples} onSelect={setExample} />
+        </div>
+        <CroppedImages image={image} cropping={cropping} />
+      </div>
+    </>
   )
 }
+
+type ExampleProps = Readonly<{
+  selected: string
+  examples: ReadonlyArray<string>
+  onSelect: (example: string) => void
+}>
+const Examples = ({ selected, examples, onSelect }: ExampleProps) => (
+  <div className="app-examples">
+    {examples.map((e) => (
+      <img
+        src={e}
+        alt=""
+        className={e === selected ? 'selected' : ''}
+        onClick={() => onSelect(e)}
+      />
+    ))}
+  </div>
+)
 
 export type CroppedImagesProps = {
   image?: HTMLImageElement
@@ -40,13 +74,11 @@ export const CroppedImages = ({ image, cropping }: CroppedImagesProps) => {
     height: image.naturalHeight,
   })
 
-  console.log(scaledCropping)
-
   return (
-    <div>
+    <div className="app-cropped-images">
       <CroppedImage image={image} ratio="5:2" cropping={scaledCropping} />
       <CroppedImage image={image} ratio="16:9" cropping={scaledCropping} />
-      <CroppedImage image={image} ratio="1:1" cropping={scaledCropping} />
+      <CroppedImage image={image} ratio="4:3" cropping={scaledCropping} />
       <CroppedImage image={image} ratio="9:16" cropping={scaledCropping} />
       <CroppedImage image={image} ratio="90:195" cropping={scaledCropping} />
     </div>
