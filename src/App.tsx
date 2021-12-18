@@ -5,6 +5,8 @@ import { Cropping, scaleCropping } from './lib/focusCrop'
 
 import './App.css'
 
+const PUBLIC_URL = process.env.PUBLIC_URL + '/'
+
 const examples = [
   'pexels-cottonbro-4503273.webp',
   'pexels-laura-penwell-3608056.webp',
@@ -27,7 +29,7 @@ export const App = () => {
       <div className="app-layout">
         <div className="app-cropper">
           <ImageCropper
-            src={example}
+            src={PUBLIC_URL + example}
             cropping={cropping}
             onLoad={setImage}
             onChange={setCropping}
@@ -52,7 +54,7 @@ const Examples = ({ selected, examples, onSelect }: ExampleProps) => (
   <div className="app-examples">
     {examples.map((e) => (
       <img
-        src={e}
+        src={PUBLIC_URL + e}
         alt=""
         className={e === selected ? 'selected' : ''}
         onClick={() => onSelect(e)}
