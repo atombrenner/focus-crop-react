@@ -1,3 +1,5 @@
+@import-normalize;
+
 /* border-box reset, see https://css-tricks.com/box-sizing/ */
 html {
   box-sizing: border-box;
