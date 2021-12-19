@@ -12,15 +12,25 @@ const examples = [
   'pexels-laura-penwell-3608056.webp',
   'pexels-vlada-karpovich-4609096.webp',
   'pexels-kyle-karbowski-9637308.webp',
+  'pexels-dominika-roseclay-1094794.webp',
+  'pexels-kasia-palitava-10391201.webp',
 ] as const
+
+const defaultCropping: Cropping = {
+  focus: { x: 0.5, y: 1 / 3 },
+  clip: { x: 0, y: 0, width: 1, height: 1 },
+}
 
 export const App = () => {
   const [example, setExample] = useState<string>(examples[0])
   const [image, setImage] = useState<HTMLImageElement>()
-  const [cropping, setCropping] = useState<Cropping>({
-    focus: { x: 0.5, y: 1 / 3 },
-    clip: { x: 0, y: 0, width: 1, height: 1 },
-  })
+  const [cropping, setCropping] = useState<Cropping>(defaultCropping)
+
+  const onSelectExample = (example: string) => {
+    setCropping(defaultCropping)
+    setExample(example)
+    setImage(undefined)
+  }
 
   return (
     <>
@@ -37,9 +47,9 @@ export const App = () => {
           <p>
             Example images from <a href="https://pexels.com">Pexels</a>:
           </p>
-          <Examples selected={example} examples={examples} onSelect={setExample} />
+          <Examples selected={example} examples={examples} onSelect={onSelectExample} />
         </div>
-        <CroppedImages image={image} cropping={cropping} />
+        <CroppedImages key={example} image={image} cropping={cropping} />
       </div>
     </>
   )
