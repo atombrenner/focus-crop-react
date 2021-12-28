@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, PointerEventHandler, useState, useCallback } from 'react'
+import React, { ReactEventHandler, PointerEventHandler, useState } from 'react'
 import { move, MoveFn } from './move'
 import { Point, Rectangle, Cropping } from './focusCrop'
 
@@ -28,13 +28,13 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
   const [dragPoint, setDragPoint] = useState<Point>()
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const cancelDrag = useCallback(() => {
+  const cancelDrag = () => {
     if (drag) {
       drag.target.releasePointerCapture(drag.pointerId)
       setDrag(undefined)
       onChange(drag.cropping)
     }
-  }, [drag, onChange])
+  }
 
   const onPointerDown: PointerEventHandler<HTMLDivElement> = (e) => {
     if (!isPrimaryLeftButton(e) || !isHTMLElement(e.target)) return

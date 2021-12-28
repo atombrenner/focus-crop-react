@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Size, Cropping, focusCrop, ratioFromString } from './focusCrop'
 import './CroppedImage.css'
 

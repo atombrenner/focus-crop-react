@@ -35,7 +35,10 @@ export const App = () => {
   return (
     <>
       <h1>Focus Crop React</h1>
-      <p>Crop images to a desired aspect ratio around a focus point.</p>
+      <p>
+        React components for cropping images around a focus point to the desired aspect ratio.{' '}
+        <a href="https://github.com/atombrenner/focus-crop-react">GitHub Repo</a>
+      </p>
       <div className="app-layout">
         <div className="app-cropper">
           <ImageCropper
@@ -45,7 +48,15 @@ export const App = () => {
             onChange={setCropping}
           />
           <p>
-            Example images from <a href="https://pexels.com">Pexels</a>:
+            1. Click inside the above image to set the focus point. The focus point marks the most
+            important area. You can always drag it to a new position.
+          </p>
+          <p>
+            2. Drag the image border to the inside to hide unwanted parts. Alternatively, use the
+            mouse wheel to zoom and cut.
+          </p>
+          <p>
+            More example images from <a href="https://pexels.com">Pexels</a>:
           </p>
           <Examples selected={example} examples={examples} onSelect={onSelectExample} />
         </div>

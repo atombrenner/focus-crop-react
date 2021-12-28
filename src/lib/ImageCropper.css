@@ -154,16 +154,29 @@
   position: absolute;
 
   box-sizing: border-box;
-  width: 39px;
-  height: 39px;
-  transform: translate(-20px, -20px);
+  width: 70px;
+  height: 70px;
+  transform: translate(-35px, -35px);
+  color: rgba(245, 245, 245, 0.8);
   background: rgba(192, 255, 192, 0.2);
-  border: 3px solid whitesmoke;
+  border: 3px solid rgba(245, 245, 245, 0.8);
+  border-radius: 50%;
 
   cursor: move;
 }
 
+.focus-point::after {
+  display: block;
+  font-size: 12px;
+
+  content: 'x';
+  width: 100%;
+  padding-left: 29.5px;
+  padding-top: 24px;
+}
+
 .focus-point:hover {
-  background: rgba(192, 255, 192, 0.4);
+  background: rgba(192, 255, 192, 0.5);
   border-color: white;
+  color: white;
 }
