@@ -75,6 +75,7 @@ const Examples = ({ selected, examples, onSelect }: ExampleProps) => (
   <div className="app-examples">
     {examples.map((e) => (
       <img
+        key={e}
         src={PUBLIC_URL + e}
         alt=""
         className={e === selected ? 'selected' : ''}
