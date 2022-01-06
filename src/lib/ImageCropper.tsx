@@ -1,6 +1,6 @@
-import React, { ReactEventHandler, PointerEventHandler, useState } from 'react'
-import { move, MoveFn } from './move'
-import { Point, Rectangle, Cropping } from './focusCrop'
+import React, { ReactEventHandler, PointerEventHandler, useState, useRef, useEffect } from 'react'
+import { move, MoveFn, zoom } from './move'
+import { Point, Rectangle, Cropping, Size } from './focusCrop'
 
 import './ImageCropper.css'
 
@@ -27,6 +27,7 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
   const [drag, setDrag] = useState<Drag>()
   const [dragPoint, setDragPoint] = useState<Point>()
   const [isLoaded, setIsLoaded] = useState(false)
+  const [size, setSize] = useState<Size>()
 
   const cancelDrag = () => {
     if (drag) {
@@ -84,12 +85,35 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
   }
 
   const onImageLoad: ReactEventHandler<HTMLImageElement> = (e) => {
+    setSize({ width: e.currentTarget.width, height: e.currentTarget.height })
     onLoad(e.currentTarget)
     setIsLoaded(true)
   }
 
+  // With React's synthetic event system it is not possible to active wheel event listeners
+  // that can prevent the default of scrolling the page.
+  // Instead we have to get a ref and attach a native event handler.
+  // For more details see this issue https://github.com/facebook/react/issues/14856
+  const refForMouseWheel = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!size || !refForMouseWheel.current) return
+    const { width, height } = cropping.clip
+    const onWheel = (e: WheelEvent) => {
+      const growth = (Math.sign(e.deltaY) * 8) / Math.min(size.width * width, size.height * height)
+      const factorX = (width + growth) / width
+      const factorY = (height + growth) / height
+      const limit = e.deltaY > 0 ? Math.max : Math.min
+      onChange(zoom(cropping, limit(factorX, factorY)))
+      e.preventDefault()
+    }
+    const div = refForMouseWheel.current
+    div.addEventListener('wheel', onWheel)
+    return () => div.removeEventListener('wheel', onWheel)
+  }, [size, cropping, onChange])
+
   return (
     <div
+      ref={refForMouseWheel}
       className={`image-cropper ${className}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -99,7 +123,7 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
       <img src={src} alt="" onLoad={onImageLoad} />
       {isLoaded && <ClipRectangle {...cropping.clip} />}
       {isLoaded && <FocusPoint {...cropping.focus} />}
-      {!isLoaded && <p>loading ...</p>}
+      {!isLoaded && <p>loading image ...</p>}
     </div>
   )
 }

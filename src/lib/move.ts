@@ -53,3 +53,32 @@ export const move: Move = (function () {
 
   return { focus, topLeft, top, topRight, right, bottomRight, bottom, bottomLeft, left }
 })()
+
+// zoom the clip rectangle around the focus point, keeping the aspect ratio fixed
+export const zoom = ({ clip, focus }: Cropping, factor: number): Cropping => {
+  console.log(factor)
+  // adjust the factor so that the scaled interval is in [0, 1] and length >= minDist
+  const clampedFactor =
+    factor > 1
+      ? Math.min(
+          factor,
+          ...maxFactor(clip.x, clip.width, focus.x),
+          ...maxFactor(clip.y, clip.height, focus.y),
+        )
+      : Math.max(factor, minDist / clip.width, minDist / clip.height)
+
+  // apply final calibrated values
+  const [x, width] = scaled(clip.x, clip.width, focus.x, clampedFactor)
+  const [y, height] = scaled(clip.y, clip.height, focus.y, clampedFactor)
+
+  return { focus, clip: { x, y, width, height } }
+}
+
+const maxFactor = (start: number, length: number, center: number) => [
+  center > start ? center / (center - start) : Number.POSITIVE_INFINITY, // max factor for scaled start >= 0
+  center < start + length ? (1 - center) / (length - center + start) : Number.POSITIVE_INFINITY, // max factor for scaled end <= 1
+]
+
+// proportions around center (focus) should stay constant
+const scaled = (start: number, length: number, center: number, factor: number) =>
+  [center - (center - start) * factor, length * factor] as [number, number]

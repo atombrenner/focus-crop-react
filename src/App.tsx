@@ -49,11 +49,11 @@ export const App = () => {
           />
           <p>
             1. Click inside the above image to set the focus point. The focus point marks the most
-            important area. You can always drag it to a new position.
+            important area. You can always drag it to a new position later.
           </p>
           <p>
             2. Drag the image border to the inside to hide unwanted parts. Alternatively, use the
-            mouse wheel to zoom and cut.
+            mouse wheel zoom by cutting from all four borders.
           </p>
           <p>
             More example images from <a href="https://pexels.com">Pexels</a>:
