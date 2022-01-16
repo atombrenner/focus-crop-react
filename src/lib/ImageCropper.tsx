@@ -4,10 +4,6 @@ import { Point, Rectangle, Cropping, Size } from './focusCrop'
 
 import './ImageCropper.css'
 
-const isPrimaryLeftButton = (e: React.PointerEvent) => e.isPrimary && e.button === 0
-
-const isHTMLElement = (target: EventTarget): target is HTMLElement => target instanceof HTMLElement
-
 type Drag = Readonly<{
   target: HTMLElement
   pointerId: number
@@ -15,6 +11,16 @@ type Drag = Readonly<{
   cropping: Cropping
   moveFn: MoveFn
 }>
+
+const isPrimaryLeftButton = (e: React.PointerEvent) => e.isPrimary && e.button === 0
+
+const isHTMLElement = (target: EventTarget): target is HTMLElement => target instanceof HTMLElement
+
+const dragTo = (to: Point, drag: Drag) => {
+  const dx = to.x - drag.point.x
+  const dy = to.y - drag.point.y
+  return move[drag.moveFn](drag.cropping, dx, dy)
+}
 
 export type ImageCropperProps = {
   src: string
@@ -67,12 +73,6 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
     onChange(newCropping)
   }
 
-  const dragTo = (to: Point, drag: Drag) => {
-    const dx = to.x - drag.point.x
-    const dy = to.y - drag.point.y
-    return move[drag.moveFn](drag.cropping, dx, dy)
-  }
-
   if (drag && dragPoint) {
     const newCropping = dragTo(dragPoint, drag)
     if (JSON.stringify(newCropping.clip) !== JSON.stringify(cropping.clip)) onChange(newCropping)
@@ -90,8 +90,8 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
     setIsLoaded(true)
   }
 
-  // With React's synthetic event system it is not possible to active wheel event listeners
-  // that can prevent the default of scrolling the page.
+  // With React's synthetic event system it is not possible to have an active
+  // wheel event listener that can prevent the default of scrolling the page.
   // Instead we have to get a ref and attach a native event handler.
   // For more details see this issue https://github.com/facebook/react/issues/14856
   const refForMouseWheel = useRef<HTMLDivElement>(null)

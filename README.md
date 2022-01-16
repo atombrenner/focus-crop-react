@@ -1,11 +1,12 @@
-# focal-point-crop-react
+# focus-crop-react
 
 Crop images to the desired aspect ratio around a focus point with React components.
 
 ## The Problem
 
-Often you need to present images in different aspect ratios. For example on a wide screen (aka desktop) you use a 16:9 aspect ratio but on a narrow screen (aka mobile)
-you show it in 4:3 or 9:16. Manually cropping images is time consuming and not very
+Often you need to present images in different aspect ratios. For example,
+on a wide screen (aka desktop) you use a 16:9 aspect ratio but on a narrow screen (aka mobile)
+you show it in 4:3 or 9:16. Manually cropping is time consuming and not very
 flexible if you discover later that another aspect ratio is needed.
 
 If you mark the most important area of the image with a focus point you can automate
@@ -21,7 +22,7 @@ unwanted parts are never shown.
    You can drag the focus point to a different position with a live
    preview of the generated croppings.
    The focus point will always be a part of the cropped image.
-2. Optionaly, cut unwanted parts by dragging the image border to the inside.
+2. Optionally, cut unwanted parts by dragging the image border to the inside.
    Those parts will never be shown in the cropped image.
    As a side effect, this will also zoom the cropped image.
    You can use the mouse wheel to zoom around the focus point.
