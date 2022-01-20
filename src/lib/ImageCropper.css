@@ -22,13 +22,16 @@
 
 .clip-rectangle-shadow {
   box-shadow: 0 0 0 300vw rgba(0, 0, 0, 0.35);
+  position: absolute;
 }
 
 .clip-handle {
   position: absolute;
   width: 15px;
   height: 15px;
-  background-color: rgba(245, 245, 245, 0.5);
+  background-color: whitesmoke;
+  border: 1px black solid;
+  /* mix-blend-mode: difference; */
 }
 .clip-handle:hover {
   background-color: whitesmoke;
@@ -93,14 +96,18 @@
 .clip-line {
   position: absolute;
   border-style: dashed;
-  border-width: 2px;
-  border-color: rgba(245, 245, 245, 0.5);
+  border-width: 1px;
+  border-color: white;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  mix-blend-mode: difference;
 }
 
 .clip-line-vertical {
   border-top-width: 0;
   border-bottom-width: 0;
-  top: 0%;
   left: calc(33.3333% - 2px);
   width: calc(33.3333% + 4px);
   height: 100%;
@@ -110,7 +117,6 @@
   border-left-width: 0;
   border-right-width: 0;
   top: calc(33.3333% - 2px);
-  left: 0%;
   width: 100%;
   height: calc(33.3333% + 4px);
 }
@@ -152,14 +158,13 @@
 .focus-point {
   pointer-events: all;
   position: absolute;
-
-  box-sizing: border-box;
-  width: 70px;
-  height: 70px;
+  width: 68px;
+  height: 68px;
   transform: translate(-35px, -35px);
-  color: rgba(245, 245, 245, 0.8);
-  background: rgba(192, 255, 192, 0.2);
-  border: 3px solid rgba(245, 245, 245, 0.8);
+
+  color: black;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px dotted black;
   border-radius: 50%;
 
   cursor: move;
@@ -167,16 +172,15 @@
 
 .focus-point::after {
   display: block;
-  font-size: 12px;
-
+  font-size: 14px;
   content: 'x';
   width: 100%;
-  padding-left: 29.5px;
-  padding-top: 24px;
+  padding-left: 30px;
+  padding-top: 23.5px;
 }
 
 .focus-point:hover {
-  background: rgba(192, 255, 192, 0.5);
-  border-color: white;
-  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(0, 0, 0, 0.5);
+  border-color: whitesmoke;
 }

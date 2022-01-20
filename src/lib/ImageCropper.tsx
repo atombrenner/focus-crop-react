@@ -131,7 +131,7 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
 const ClipRectangle = ({ x, y, width, height }: Rectangle) => (
   <div className="clip-rectangle">
     <div
-      className="clip-line clip-rectangle-shadow"
+      className=" clip-rectangle-shadow"
       style={{
         top: formatAsPercent(y),
         left: formatAsPercent(x),
@@ -139,6 +139,8 @@ const ClipRectangle = ({ x, y, width, height }: Rectangle) => (
         right: formatAsPercent(1 - x - width),
       }}
     >
+      <div className="clip-line" />
+
       {/* lines */}
       <div className="clip-line clip-line-vertical" />
       <div className="clip-line clip-line-horizontal" />

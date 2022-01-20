@@ -14,6 +14,8 @@ const examples = [
   'pexels-kyle-karbowski-9637308.webp',
   'pexels-dominika-roseclay-1094794.webp',
   'pexels-kasia-palitava-10391201.webp',
+  'pexels-emma-li-5199173.webp',
+  'pexels-evie-shaffer-2512387.webp',
 ] as const
 
 const defaultCropping: Cropping = {
