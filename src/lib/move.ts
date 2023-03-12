@@ -56,7 +56,6 @@ export const move: Move = (function () {
 
 // zoom the clip rectangle around the focus point, keeping the aspect ratio fixed
 export const zoom = ({ clip, focus }: Cropping, factor: number): Cropping => {
-  console.log(factor)
   // adjust the factor so that the scaled interval is in [0, 1] and length >= minDist
   const clampedFactor =
     factor > 1
