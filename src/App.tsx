@@ -16,6 +16,7 @@ const examples = [
   'pexels-kasia-palitava-10391201.webp',
   'pexels-emma-li-5199173.webp',
   'pexels-evie-shaffer-2512387.webp',
+  'tansparent.png',
 ] as const
 
 const defaultCropping: Cropping = {

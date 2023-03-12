@@ -114,7 +114,7 @@ export const ImageCropper = ({ src, cropping, onLoad, onChange, className }: Ima
   return (
     <div
       ref={refForMouseWheel}
-      className={`image-cropper ${className}`}
+      className={`image-cropper ${className ?? ''}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

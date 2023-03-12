@@ -30,6 +30,7 @@ export const CroppedImage = ({ image, ratio, cropping }: CroppedImageProps) => {
     const ctx = ref.current!.getContext('2d')
     if (!ctx) throw Error('no canvas context')
     const src = focusCrop(desiredRatio, cropping)
+    ctx.clearRect(0, 0, width, height)
     ctx.drawImage(image, src.x, src.y, src.width, src.height, 0, 0, width, height)
   })
 
